@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
-from pages.login_page import LoginPage
+from pages.login import LoginPages
 import os 
 import time
 
@@ -11,6 +11,21 @@ import time
 
 @pytest.fixture(scope="function")
 def setup(request):
+    """
+    Pytest fixture: Setup and teardown for Selenium WebDriver.
+
+    - Launches Chrome browser in incognito mode with password prompts disabled.
+    - Detects whether the test is for DemoQA or SauceDemo based on pytest markers.
+    - Yields (driver, baseUrl) for use inside test cases.
+    - Quits the browser after the test finishes.
+
+    Args:
+        request (FixtureRequest): Pytest request object to inspect test markers.
+
+    Yields:
+        tuple: (driver, baseUrl) where driver is Selenium WebDriver instance,
+               and baseUrl is the base URL for the current test.
+    """
     chrome_options = Options()
     chrome_options.add_argument("--incognito")
 
@@ -32,10 +47,11 @@ def setup(request):
     yield driver ,baseUrl
 
     driver.quit()
+    
 @pytest.fixture
-def login_page(setup):
+def login(setup):
     driver, base_url = setup
-    page = LoginPage(driver)
+    page = LoginPages(driver)
     page.open(base_url)
     return page
 

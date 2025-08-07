@@ -21,6 +21,17 @@ import time
 
 @pytest.mark.demoqa
 def test_checkbox(setup):
+    """
+    Test Case: Select a main and sub checkbox on the DemoQA Checkbox page.
+
+    Steps:
+    1. Open the DemoQA checkbox page.
+    2. Expand the checkbox tree by clicking the main collapse button.
+    3. Select the 'Desktop' sub-checkbox.
+
+    Args:
+        setup (fixture): Provides WebDriver instance and base URL.
+    """
     driver , baseUrl = setup
 
     check_box = Checkbox(driver)

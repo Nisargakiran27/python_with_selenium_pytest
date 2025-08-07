@@ -5,6 +5,19 @@ import time
 
 @pytest.mark.demoqa
 def test_dropdown(setup):
+    """
+    Test Case: Select an option from the DemoQA Select Menu (Dropdown).
+
+    Steps:
+    1. Open the DemoQA "Select Menu" page.
+    2. Scroll to the first dropdown element.
+    3. Click to open the dropdown.
+    4. Select "Group 1, option 2" from the dropdown list.
+    5. Pause for visibility (manual verification/demo).
+
+    Args:
+        setup (fixture): Provides WebDriver instance and base URL.
+    """
     driver , baseUrl = setup
     driver.get(baseUrl + "select-menu")
 

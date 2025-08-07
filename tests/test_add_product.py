@@ -1,6 +1,6 @@
 import pytest
-from pages.login_page import LoginPage
-from pages.inventory_page import InventoryPage
+from pages.login import LoginPages
+from pages.inventory import InventoryPage
 from pages.cart_page import CartPage
 import time 
 # from dotenv import load_dotenv
@@ -12,10 +12,24 @@ import time
 
 
 def test_add_product_to_cart(setup):
+    """
+    Test Case: Add a random product to the cart and proceed to checkout.
+
+    Steps:
+    1. Open the SauceDemo website.
+    2. Log in with valid credentials (standard_user / secret_sauce).
+    3. Select a random product from the inventory.
+    4. Add the selected product to the cart.
+    5. Navigate to the cart page.
+    6. Verify items in the cart and click checkout.
+
+    Args:
+        setup (fixture): Provides WebDriver instance and base URL.
+    """
     driver, baseUrl = setup
     driver.get(baseUrl)
 
-    login = LoginPage(driver)
+    login = LoginPages(driver)
     login.login("standard_user", "secret_sauce")
     time.sleep(4)
 

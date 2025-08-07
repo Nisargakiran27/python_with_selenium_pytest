@@ -1,5 +1,5 @@
-from pages.login_page import LoginPage
-from pages.inventory_page import InventoryPage
+from pages.login import LoginPages
+from pages.inventory import InventoryPage
 from utils.helpers import perform_login_and_add_to_cart
 from pages.cart_page import CartPage
 from pages.form_filling import FillForm
@@ -26,6 +26,23 @@ import time
 from utils.valid_form import read_from_valid_form_data  # create a utility for CSV reading
 
 def test_valid_form_fill(setup):
+    """
+    Test Case: Fill the checkout form with valid details and complete the purchase.
+
+    Steps:
+    1. Login and add a product to the cart.
+    2. Go to the cart page and click checkout.
+    3. Read valid user details from CSV.
+    4. Fill in the checkout form with the details.
+    5. Continue to the next step and click the finish button.
+
+    Expected Result:
+    - Checkout form should accept valid details.
+    - Purchase flow should proceed to the finish stage without errors.
+
+    Args:
+        setup (fixture): Provides initialized WebDriver instance and base URL.
+    """
     driver, baseUrl = setup
     driver.get(baseUrl)
 

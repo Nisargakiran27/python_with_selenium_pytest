@@ -1,8 +1,8 @@
-from pages.login_page import LoginPage
-from pages.inventory_page import InventoryPage
+from pages.login import LoginPages
+from pages.inventory import InventoryPage
 
 def perform_login_and_add_to_cart(driver):
-    login = LoginPage(driver)
+    login = LoginPages(driver)
     login.login("standard_user", "secret_sauce")
     Inventory = InventoryPage(driver)
     Inventory.click_random_product()

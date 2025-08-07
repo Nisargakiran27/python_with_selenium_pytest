@@ -1,6 +1,6 @@
 import pytest
-from pages.login_page import LoginPage
-from pages.inventory_page import InventoryPage
+from pages.login import LoginPages
+from pages.inventory import InventoryPage
 from pages.cart_page import CartPage
 from pages.form_filling import FillForm
 import time
@@ -13,6 +13,23 @@ form_data = read_form_login_data("test_data\\form_data.csv")
 
 @pytest.mark.parametrize("data",form_data)
 def test_invalid_form_filling(setup, data):
+    """
+    Test Case: Validate checkout form behavior with invalid or incomplete data.
+
+    Steps:
+    1. Log in and add a product to the cart (using helper function).
+    2. Navigate to the cart page and click on 'Checkout'.
+    3. Fill the form with test data (which may be incomplete or invalid).
+    4. Click the 'Continue' button.
+
+    Expected Result:
+    - The system should display an error message or prevent proceeding when
+      the form is filled with invalid/incomplete data.
+
+    Args:
+        setup (fixture): Provides the WebDriver instance and base URL.
+        data (dict): Dictionary containing 'first_name', 'last_name', and 'postal_code'.
+    """
     driver , baseUrl = setup
 
     driver.get(baseUrl)
